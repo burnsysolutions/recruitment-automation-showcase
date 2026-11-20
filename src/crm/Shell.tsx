@@ -112,7 +112,9 @@ export function CrmShell() {
             <kbd className="rounded border border-gborder px-1.5 text-[11px] text-gmuted">⌘K</kbd>
           </button>
           <div className="ml-auto flex items-center gap-2 md:ml-3">
-            <span data-demo className="hidden rounded-md border border-white/15 px-2 py-1 text-[11px] font-medium text-white/70 lg:inline">Demo data</span>
+            <button onClick={() => nav("/")} className="rounded-md border border-white/15 px-2 py-1 text-[11px] font-medium text-white/80 hover:bg-white/10">
+              Back to the showcase
+            </button>
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#2b3d59] text-[12px] font-semibold text-white">S</span>
           </div>
         </div>
