@@ -1,0 +1,1 @@
+import{z as a,j as s,a7 as n}from"./index-DmcGvoTT.js";function i(){const{slug:e=""}=a();return s.jsx("div",{className:"min-h-screen bg-[#e9edf2] p-10",children:s.jsx("div",{id:"shot",className:"inline-block",children:s.jsx(n,{slug:e})})})}export{i as default};
