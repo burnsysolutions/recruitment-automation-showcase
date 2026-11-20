@@ -9,6 +9,7 @@ import { DaysAndHoursDemo } from "./sims/DaysAndHours";
 import { FrontDeskDemo } from "./sims/FrontDesk";
 import { AtsCheckDemo } from "./sims/AtsCheck";
 import { ShortlistWeightsDemo } from "./sims/ShortlistWeights";
+import { PlatformView } from "./platform/PlatformView";
 
 const CUSTOM = {
   "days-and-hours": DaysAndHoursDemo,
@@ -45,8 +46,8 @@ export function DemoPage() {
         </Link>
 
         <div className="mt-5 flex flex-wrap items-center gap-3">
-          <span className="text-[12.5px] font-medium uppercase tracking-[0.1em] text-gmuted">
-            {String(a.n).padStart(2, "0")} · {g.kicker}
+          <span className="text-[13.5px] font-medium text-gmuted">
+            {a.n} of 45, {g.kicker}
           </span>
           <StatusPill status={a.status} />
         </div>
@@ -54,11 +55,13 @@ export function DemoPage() {
           {a.title}
         </h1>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr]">
+        <section className="mt-6" aria-label="In the platform">
+          <PlatformView slug={a.slug} title={a.title} />
+        </section>
+
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1fr]">
           <div className="rounded-xl border border-gborder bg-white p-5">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-gmuted">
-              The problem
-            </p>
+            <h2 className="text-[15px] font-semibold">The problem</h2>
             <p className="mt-2 text-[14.5px] leading-[1.65]">{a.problem}</p>
             {a.outcome ? (
               <div className="mt-4 rounded-lg bg-[#e8f4ee] px-3.5 py-2.5 text-[13.5px] font-medium leading-[1.5] text-gsuccess">
@@ -67,9 +70,7 @@ export function DemoPage() {
             ) : null}
           </div>
           <div className="rounded-xl border border-gborder bg-white p-5">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-gmuted">
-              How it works
-            </p>
+            <h2 className="text-[15px] font-semibold">How it works</h2>
             <ul className="mt-2 space-y-2">
               {a.how.map((h) => (
                 <li key={h} className="flex gap-2.5 text-[14px] leading-[1.55]">
@@ -94,7 +95,7 @@ export function DemoPage() {
         <section className="mt-8">
           <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h2 className="text-[18px] font-semibold">Try it</h2>
+              <h2 className="text-[18px] font-semibold">Step through it</h2>
               <p className="text-[13px] text-gmuted">
                 Made-up data. Nothing is sent anywhere.
               </p>

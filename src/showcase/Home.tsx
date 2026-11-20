@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { GROUPS, byGroup } from "./catalogue";
 import { StatusPill } from "./bits";
+import { asset } from "../lib/asset";
 import { CODE_URL, GITHUB_PROFILE, PORTFOLIO_URL } from "./links";
 
 const FACTS: [string, string][] = [
@@ -46,44 +47,62 @@ export function ShowcaseHome() {
     <div className="min-h-screen bg-gbg font-glo text-gfg">
       <TopBar />
 
-      <section className="bg-midnight text-white">
-        <div className="mx-auto max-w-[1180px] px-5 pb-16 pt-14 md:px-8 md:pb-20 md:pt-20">
-          <p className="text-[13px] font-medium uppercase tracking-[0.12em] text-white/55">
-            Automation showcase
-          </p>
-          <h1 className="mt-4 max-w-[820px] text-[clamp(2rem,4.4vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.02em]">
-            Automations I've built for recruitment and service businesses.
-          </h1>
-          <p className="mt-5 max-w-[680px] text-[16px] leading-[1.65] text-white/70">
-            45 of them, from reading emailed timesheets to drafting outreach for
-            approval. The real systems run on clients' own data, so every demo
-            here runs on made-up names and figures. Press every button.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              onClick={() =>
-                document
-                  .getElementById("finance")
-                  ?.scrollIntoView({ behavior: "smooth", block: "start" })
-              }
-              className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-[14px] font-medium text-midnight hover:bg-white/90"
-            >
-              See the automations <ArrowRight className="h-4 w-4" />
-            </button>
-            <Link
-              to="/crm"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-4 py-2.5 text-[14px] font-medium text-white hover:bg-white/10"
-            >
-              <LayoutDashboard className="h-4 w-4" /> Open the demo back office
-            </Link>
-            <a
-              href={CODE_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-4 py-2.5 text-[14px] font-medium text-white hover:bg-white/10"
-            >
-              <Code2 className="h-4 w-4" /> Read a tested code sample
-            </a>
+      <section className="overflow-hidden bg-midnight text-white">
+        <div className="mx-auto grid max-w-[1180px] items-center gap-12 px-5 pb-16 pt-14 md:px-8 md:pb-20 md:pt-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)]">
+          <div>
+            <p className="text-[14px] font-medium text-white/60">
+              Automation showcase
+            </p>
+            <h1 className="mt-3 max-w-[620px] text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.02em]">
+              Automations I've built for recruitment and service businesses.
+            </h1>
+            <p className="mt-5 max-w-[560px] text-[16px] leading-[1.65] text-white/70">
+              45 of them, each shown in the platform it runs in: Avolon Group's
+              own back office, and Glo CRM. The real systems run on clients' own
+              data, so every name and figure here is made up.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("finance")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+                className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-[14px] font-medium text-midnight hover:bg-white/90"
+              >
+                See the automations <ArrowRight className="h-4 w-4" />
+              </button>
+              <Link
+                to="/crm"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-4 py-2.5 text-[14px] font-medium text-white hover:bg-white/10"
+              >
+                <LayoutDashboard className="h-4 w-4" /> Open the demo back
+                office
+              </Link>
+              <a
+                href={CODE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-4 py-2.5 text-[14px] font-medium text-white hover:bg-white/10"
+              >
+                <Code2 className="h-4 w-4" /> Read a tested code sample
+              </a>
+            </div>
+          </div>
+          <div
+            className="relative hidden aspect-[1.32] lg:block"
+            aria-hidden="true"
+          >
+            <img
+              src={asset("/thumbs/hero-glo.webp")}
+              alt=""
+              className="absolute right-0 top-0 w-[84%] rounded-[10px] opacity-90 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)] ring-1 ring-white/10"
+            />
+            <img
+              src={asset("/thumbs/hero-avolon.webp")}
+              alt=""
+              className="absolute bottom-0 left-0 w-[84%] rounded-[10px] shadow-[0_40px_80px_-24px_rgba(0,0,0,0.8)] ring-1 ring-white/15"
+            />
           </div>
         </div>
       </section>
@@ -123,9 +142,7 @@ export function ShowcaseHome() {
       {GROUPS.map((g) => (
         <section key={g.id} id={g.id} className="scroll-mt-28">
           <div className="mx-auto max-w-[1180px] px-5 py-14 md:px-8">
-            <p className="text-[12.5px] font-medium uppercase tracking-[0.1em] text-gmuted">
-              {g.kicker}
-            </p>
+            <p className="text-[13.5px] font-medium text-gmuted">{g.kicker}</p>
             <h2 className="mt-2 text-[26px] font-semibold tracking-[-0.01em]">
               {g.title}
             </h2>
@@ -137,24 +154,36 @@ export function ShowcaseHome() {
                 <Link
                   key={a.slug}
                   to={`/demo/${a.slug}`}
-                  className="group flex flex-col rounded-xl border border-gborder bg-white p-5 transition-shadow hover:shadow-[0_6px_24px_-12px_rgba(0,33,73,0.35)]"
+                  className="group flex flex-col overflow-hidden rounded-xl border border-gborder bg-white transition-shadow hover:shadow-[0_10px_30px_-14px_rgba(0,33,73,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-action"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-[12px] font-medium tabular-nums text-gmuted">
-                      {String(a.n).padStart(2, "0")}
-                    </span>
-                    <StatusPill status={a.status} />
+                  <div className="border-b border-gborder bg-[#e9edf2] px-3 pt-3">
+                    <img
+                      src={asset(`/thumbs/${a.slug}.webp`)}
+                      alt=""
+                      loading="lazy"
+                      width={720}
+                      height={470}
+                      className="block h-auto w-full rounded-t-[6px] shadow-[0_6px_18px_-10px_rgba(11,15,26,0.45)] transition-transform duration-300 group-hover:-translate-y-0.5"
+                    />
                   </div>
-                  <p className="mt-3 text-[15.5px] font-semibold leading-[1.35] text-gfg">
-                    {a.title}
-                  </p>
-                  <p className="mt-2 flex-1 text-[13.5px] leading-[1.55] text-gmuted">
-                    {a.line}
-                  </p>
-                  <p className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-action">
-                    Try the demo{" "}
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </p>
+                  <div className="flex flex-1 flex-col p-5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[12px] font-medium tabular-nums text-gmuted">
+                        {String(a.n).padStart(2, "0")}
+                      </span>
+                      <StatusPill status={a.status} />
+                    </div>
+                    <p className="mt-3 text-[15.5px] font-semibold leading-[1.35] text-gfg">
+                      {a.title}
+                    </p>
+                    <p className="mt-2 flex-1 text-[13.5px] leading-[1.55] text-gmuted">
+                      {a.line}
+                    </p>
+                    <p className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-action">
+                      See it and try it{" "}
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </p>
+                  </div>
                 </Link>
               ))}
             </div>

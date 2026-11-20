@@ -462,7 +462,7 @@ export const avolonFinance: Automation[] = [
       input: {
         kind: "kv",
         rows: [
-          ["Invoices", "58"],
+          ["Invoices", "54"],
           ["Pay files", "2"],
           ["Charge", "£128,412.60"],
           ["Pay", "£104,980.15"],
@@ -485,7 +485,7 @@ export const avolonFinance: Automation[] = [
             tone: "bad",
           },
           {
-            title: "57 other invoices",
+            title: "53 other invoices",
             sub: "No problems. Approve all goes ahead without INV-001291.",
             tag: "Clear",
             tone: "good",
@@ -521,8 +521,8 @@ export const avolonFinance: Automation[] = [
       input: {
         kind: "kv",
         rows: [
-          ["Open invoices", "121"],
-          ["Clients", "23"],
+          ["Open invoices", "27"],
+          ["Clients", "8"],
           ["Outstanding", "£212,480.10"],
         ],
       },
@@ -581,8 +581,8 @@ export const avolonFinance: Automation[] = [
       input: {
         kind: "kv",
         rows: [
-          ["Old system's invoices", "57"],
-          ["New platform's sheets", "57"],
+          ["Old system's invoices", "54"],
+          ["New platform's sheets", "54"],
         ],
       },
       steps: [

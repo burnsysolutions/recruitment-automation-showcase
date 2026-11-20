@@ -8,6 +8,7 @@ import { Register } from "./site/Register";
 import { AvailabilityReply, PhoneText, PhoneEmail } from "./site/Worker";
 
 const CrmApp = lazy(() => import("./crm/CrmApp"));
+const Shot = lazy(() => import("./showcase/platform/Shot"));
 const Login = lazy(() => import("./crm/Login"));
 
 function ScrollTop() {
@@ -25,6 +26,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<ShowcaseHome />} />
         <Route path="/demo/:slug" element={<DemoPage />} />
+        <Route path="/shot/:slug" element={<Suspense fallback={null}><Shot /></Suspense>} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/:id" element={<JobDetail />} />
         <Route path="/register" element={<Register />} />
