@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 
-// The shortlist score, as the real one works: each factor is 0 to 1, times its weight; anyone beyond the radius is cut first.
+// The shortlist score, as the real one works: each factor is 0 to 1, times its weight.
+// Anyone beyond the radius, or with a card out of date, is cut before ranking.
 
 type Cand = {
   name: string;
@@ -79,11 +80,10 @@ const CANDS: Cand[] = [
 ];
 
 const FACTORS = [
+  ["history", "Worked for the agency"],
+  ["recent", "Recent work"],
   ["distance", "Distance to site"],
-  ["history", "Past hours with the agency"],
-  ["recent", "Worked recently"],
-  ["docs", "Documents in date"],
-  ["contact", "Contacted recently"],
+  ["contact", "Last contact"],
   ["available", "Said they're available"],
 ] as const;
 
@@ -95,17 +95,16 @@ const parts = (c: Cand): Record<Key, number> => ({
   distance: Math.max(0, 1 - c.miles / RADIUS),
   history: Math.min(1, c.pastShifts / 150),
   recent: Math.max(0, 1 - c.weeksSinceWork / 26),
-  docs: c.docsOk ? 1 : 0,
   contact: Math.max(0, 1 - c.daysSinceContact / 60),
   available: c.available ? 1 : 0,
 });
 
 export function ShortlistWeightsDemo() {
+  // The weights the real office uses, as its settings screen shows them.
   const [w, setW] = useState<Record<Key, number>>({
-    distance: 50,
-    history: 30,
+    history: 60,
     recent: 15,
-    docs: 10,
+    distance: 12,
     contact: 8,
     available: 5,
   });
@@ -115,7 +114,7 @@ export function ShortlistWeightsDemo() {
     return CANDS.map((c) => {
       const p = parts(c);
       const score =
-        c.miles > RADIUS
+        c.miles > RADIUS || !c.docsOk
           ? null
           : Math.round(
               (FACTORS.reduce((s, [k]) => s + p[k] * w[k], 0) / total) * 100,
@@ -154,7 +153,8 @@ export function ShortlistWeightsDemo() {
             </label>
           ))}
           <p className="text-[12px] text-gmuted">
-            Anyone over {RADIUS} miles away is cut before ranking.
+            Anyone over {RADIUS} miles away, or with a card out of date, is cut
+            before ranking.
           </p>
         </div>
         <ol className="divide-y divide-gborder rounded-lg border border-gborder">
@@ -180,7 +180,7 @@ export function ShortlistWeightsDemo() {
               </div>
               {score === null ? (
                 <span className="rounded-full bg-gsecondary px-2 py-0.5 text-[11.5px] text-gmuted">
-                  Too far
+                  {c.docsOk ? "Too far" : "Card expired"}
                 </span>
               ) : (
                 <div className="flex w-[110px] items-center gap-2">

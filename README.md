@@ -1,6 +1,6 @@
 # Recruitment automation showcase
 
-Interactive demos of 45 automations I've built for recruitment agencies and service businesses: reading emailed timesheets, pricing payroll, raising invoices, ranking candidates, outreach queues and CV pipelines.
+Interactive demos of 45 automations I've built for recruitment agencies and service businesses, each shown in the platform it runs in: reading emailed timesheets, pricing payroll, raising invoices, ranking candidates, outreach queues and CV pipelines.
 
 **[Open the live demo](https://burnsysolutions.github.io/recruitment-automation-showcase/)**
 
@@ -8,16 +8,25 @@ The real systems run on my clients' own data, so nothing here comes from them. E
 
 ![The showcase home page](docs/home.png)
 
-## What's in it
+## Shown in the platform each one runs in
 
-- **45 demos.** Each one says the problem it solves, how it works, which tools it uses and whether it is in use today. Press **Run it** to watch the steps go through on made-up data.
-- **A demo back office** (`/crm`): candidates, clients, jobs, timesheets, payroll, invoices, shortlists, availability and compliance for a fictional construction labour agency. Its data lives in your browser; Settings > Demo data resets it.
-- **One real pay rule, with its tests.** [`src/lib/daysAndHours.ts`](src/lib/daysAndHours.ts) is the "days and hours" rule from the payroll engine I built: a man with a day rate and an hourly rate is paid a day for each full day and by the hour for the rest. Its [tests](src/lib/daysAndHours.test.ts) pin down the worked examples and the edge cases: every hour paid exactly once, impossible hours refused rather than guessed. The rates in them are made up. The payroll demo runs this exact file in the browser.
+Every automation has a screen of the platform it lives in, drawn with that platform's own branding and made-up data:
+
+- **1 to 21: Avolon Group's back office**, the operations platform I built for a construction labour agency alongside Bullhorn. Its own logo, navy and cyan, and its real menu.
+- **22 to 45: Glo CRM**, the recruitment CRM I built (JobAdder-style), with the growth, CV and search tools inside it.
 
 | | |
 |---|---|
-| ![Timesheet inbox demo](docs/timesheet-inbox.png) | ![Days and hours pay rule](docs/payroll-rule.png) |
-| ![Front Desk approval queue](docs/front-desk.png) | ![The demo back office](docs/back-office.png) |
+| ![Avolon: Timesheet Inbox](docs/avolon-timesheet-inbox.png) | ![Avolon: Payroll run](docs/avolon-payroll-run.png) |
+| ![Glo CRM: Front Desk](docs/glo-front-desk.png) | ![Glo CRM: Talent mapping](docs/glo-talent-mapping.png) |
+
+Each demo page also has a step-through of the automation and, for four of them, a hand-built demo you can change: the days and hours pay rule, the Front Desk approval queue, an ATS check and the shortlist weights.
+
+## What's in it
+
+- **45 demos.** Each one says the problem it solves, how it works, which tools it uses and whether it is in use today.
+- **A demo back office** (`/crm`) for a fictional construction labour agency. Its data lives in your browser; Settings > Demo data resets it.
+- **One real pay rule, with its tests.** [`src/lib/daysAndHours.ts`](src/lib/daysAndHours.ts) is the "days and hours" rule from the payroll engine I built: a man with a day rate and an hourly rate is paid a day for each full day and by the hour for the rest. Its [tests](src/lib/daysAndHours.test.ts) pin down the worked examples and the edge cases: every hour paid exactly once, impossible hours refused rather than guessed. The rates in them are made up.
 
 ## What "In use" means
 
@@ -97,6 +106,8 @@ The only results quoted are ones I can stand behind: 1,478 candidates asked for 
 ## How it's built
 
 Vite, React 18, TypeScript and Tailwind. No server: every demo runs in the browser on fixed, made-up data, and the site is served from GitHub Pages with hash routing so every link opens directly.
+
+The platform screens are live React, not pictures: one small kit (tables, tiles, charts, documents) drawn in each platform's own design tokens, taken from the two products' code. Each screen is laid out at 1280 by 800 and scaled to fit, so it stays sharp at any size. `tools/thumbs.mjs` makes the card images from the same screens.
 
 The production systems behind these demos use Supabase (Postgres, edge functions, scheduled jobs), Bullhorn's REST API, Claude and other AI models for reading documents and drafting, Twilio, Brevo, WhatsApp Cloud API, Stripe and Cloudflare Workers.
 

@@ -1,0 +1,109 @@
+/* The two platforms' own design tokens, scoped to their views.
+   Avolon: webflow-wishful src/index.css and src/admin (navy, cyan as a fill only, Inter and Inter Tight).
+   Glo CRM: find-joy-hire src/styles.css (dark sidebar, blue primary, Inter).
+   Muted text is held at 4.5:1 or better on its ground. */
+
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/inter-tight";
+
+.pv {
+  font-family: var(--pv-font);
+  color: var(--pv-ink);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
+  line-height: 1.45;
+}
+.pv .nums,
+.pv td,
+.pv th {
+  font-variant-numeric: tabular-nums;
+}
+
+.pv-avolon {
+  --pv-font: "Inter Variable", Inter, system-ui, sans-serif;
+  --pv-display: "Inter Tight Variable", "Inter Variable", Inter, sans-serif;
+  --pv-ink: #223754;
+  --pv-text2: #4a6178;
+  --pv-muted: #5f7186;
+  --pv-faint: #a3b0bf;
+  --pv-page: #ffffff;
+  --pv-card: #ffffff;
+  --pv-surface: #f6f8f9;
+  --pv-border: #e3e8ea;
+  --pv-divider: #edf1f3;
+  --pv-hover: #f6f8f9;
+  --pv-thead: #f6f8f9;
+  --pv-thead-text: #4a6178;
+  --pv-primary: #223754;
+  --pv-primary-text: #ffffff;
+  --pv-primary-tint: #e7f8f9;
+  --pv-primary-strong: #2f6a72;
+  --pv-link: #39767e;
+  --pv-accent: #10c4ce;
+  --pv-dot: #10c4ce;
+  --pv-good: #047857;
+  --pv-good-tint: #ecfdf5;
+  --pv-warn: #b45309;
+  --pv-warn-tint: #fffbeb;
+  --pv-bad: #b81e1e;
+  --pv-bad-tint: #fdecec;
+  --pv-chart-1: #223754;
+  --pv-chart-2: #10c4ce;
+  --pv-chart-3: #4a6178;
+  --pv-radius: 12px;
+  --pv-radius-ctl: 8px;
+}
+
+.pv-glo {
+  --pv-font: "Inter Variable", Inter, system-ui, sans-serif;
+  --pv-display: "Inter Variable", Inter, system-ui, sans-serif;
+  --pv-ink: #223754;
+  --pv-text2: #4f5f78;
+  --pv-muted: #65748a;
+  --pv-faint: #a7b1c0;
+  --pv-page: #f7f9fb;
+  --pv-card: #ffffff;
+  --pv-surface: #f2f5f7;
+  --pv-border: #e3e8ea;
+  --pv-divider: #edf1f3;
+  --pv-hover: #f7f9fc;
+  --pv-thead: #fafbfc;
+  --pv-thead-text: #62686e;
+  --pv-primary: #2b6bea;
+  --pv-primary-text: #ffffff;
+  --pv-primary-tint: #eaf0fd;
+  --pv-primary-strong: #1f5ad9;
+  --pv-link: #2b6bea;
+  --pv-accent: #e2571f;
+  --pv-dot: #2b6bea;
+  --pv-good: #047857;
+  --pv-good-tint: #ecfdf5;
+  --pv-warn: #b45309;
+  --pv-warn-tint: #fff7ed;
+  --pv-bad: #b91c1c;
+  --pv-bad-tint: #fef2f2;
+  --pv-chart-1: #2b6bea;
+  --pv-chart-2: #00897b;
+  --pv-chart-3: #f59e0b;
+  --pv-chart-4: #8e24aa;
+  --pv-radius: 8px;
+  --pv-radius-ctl: 6px;
+}
+
+.pv-scroll-hidden {
+  scrollbar-width: none;
+}
+.pv-scroll-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Paper documents shown inside the platforms: a timesheet scan, an invoice PDF, a CV. */
+.pv-paper {
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(16, 24, 40, 0.06),
+    0 8px 24px -12px rgba(16, 24, 40, 0.22);
+}
+.pv-scan {
+  background: linear-gradient(180deg, #fbfaf6 0%, #f6f3ea 100%);
+}
